@@ -1,0 +1,14 @@
+html {
+  background-color: #1c1c1c;
+}
+input#search-bar {
+  position: absolute;
+  left: 3%;
+  top: 25%;
+  font-size: 20px;
+  border-style: none;
+}
+.inputDark {
+  color: black;
+  background-color: #666;
+}
