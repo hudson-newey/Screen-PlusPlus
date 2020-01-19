@@ -1,9 +1,0 @@
-{
-  "name": "Screen++",
-  "version": "0.1.1",
-  "main": "client.js",
-  "resizeable": "false",
-  "scripts": {
-    "start": "electron ."
-  }
-}
