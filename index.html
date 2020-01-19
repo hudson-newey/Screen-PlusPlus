@@ -9,9 +9,10 @@
   </head>
 
   <body>
-    <input id="serverIP" class="inputDark" type="text" placeholder="server IP & Port"></input><br>
-    <input id="APIpassword" class="inputDark" type="text" value="admin1234" placeholder="password"></input>
-    <input id="search-bar" class="inputDark" type="text" placeholder="Enter Search Query or URL..." size="60" onkeydown="navigate(event);"></input>
+    <input id="serverIP" style="border-bottom: none;" class="inputDark" type="text" placeholder="server IP & Port"></input><br>
+    <input id="APIpassword" style="border-top: none;" class="inputDark" type="text" value="admin1234" placeholder="password"></input>
+    <input id="search-bar" type="text"
+    placeholder="Enter Search Query or URL..." size="60" onkeydown="navigate(event);"></input><button id="searchBTN" class="inputDark" onclick="navigate();">Search</button>
     <iframe id="webAPI" src="" width="1" height="1"></iframe>
   </body>
 </html>
