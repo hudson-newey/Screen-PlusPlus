@@ -9,17 +9,17 @@
     <script>
 	function navigate(e){
  		var key=e.keyCode || e.which;
-  		if (key==13){
+  		if (key==13 || e == true){
     		var searchBar = document.getElementById('search-bar');
 
     		// send request to api
     		if (searchBar.value.includes("https://") || searchBar.value.includes("http://")) {
       			// if it is a link
-      			document.getElementById('webAPI').src = "http://" + document.getElementById('serverIP').value+":8080"+
+      			document.getElementById('webSocket').src = "http://" + document.getElementById('serverIP').value+":8080"
       			+ "/?v=\"" + searchBar.value + "\"";
     		} else {
       			// google search
-      			document.getElementById('webAPI').src = "http://" + document.getElementById('serverIP').value+":8080"+
+      			document.getElementById('webSocket').src = "http://" + document.getElementById('serverIP').value+":8080"
       			+ "/?v=\"https://www.google.com/search?q="
       			+ searchBar.value + "\"";
     		}
@@ -32,11 +32,11 @@
   </head>
 
   <body>
-    <input id="serverIP" style="border-bottom: none;" class="inputDark" type="number" placeholder="server IP"></input><br>
+    <input id="serverIP" style="border-bottom: none;" class="inputDark" type="text" placeholder="server IP"></input><br>
     <br>
-    <input id="search-bar" type="url"
-    placeholder="Enter Search Query or URL..." onkeydown="navigate(event);"></input><dir><button id="searchBTN" class="inputDark" onclick="navigate();">Search</button></dir>
-    <iframe id="webAPI" src="" width="1" height="1"></iframe>
+    <input id="search-bar" type="url" maxlength="512"
+    placeholder="Enter Search Query or URL..." onkeydown="navigate(event);"></input><dir><button id="searchBTN" class="inputDark" onclick="navigate(true);">Search</button></dir>
+    <iframe id="webSocket" src="" width="1" height="1"></iframe>
   </body>
 </html>
 
