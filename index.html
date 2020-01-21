@@ -2,17 +2,40 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#21252b">
     <title>Screen++</title>
     <script src="https://ajax.googleapis.com/ajax/libs/d3js/5.9.7/d3.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="scripts.js" charset="utf-8"></script>
+    <script>
+	function navigate(e){
+ 		var key=e.keyCode || e.which;
+  		if (key==13){
+    		var searchBar = document.getElementById('search-bar');
+
+    		// send request to api
+    		if (searchBar.value.includes("https://") || searchBar.value.includes("http://")) {
+      			// if it is a link
+      			document.getElementById('webAPI').src = "http://" + document.getElementById('serverIP').value+":8080"+
+      			+ "/?v=\"" + searchBar.value + "\"";
+    		} else {
+      			// google search
+      			document.getElementById('webAPI').src = "http://" + document.getElementById('serverIP').value+":8080"+
+      			+ "/?v=\"https://www.google.com/search?q="
+      			+ searchBar.value + "\"";
+    		}
+
+    	// clear the search bar
+    	searchBar.value = "";
+  		}
+	}
+    </script>
   </head>
 
   <body>
-    <input id="serverIP" style="border-bottom: none;" class="inputDark" type="text" placeholder="server IP & Port"></input><br>
-    <input id="APIpassword" style="border-top: none;" class="inputDark" type="text" value="admin1234" placeholder="password"></input>
-    <input id="search-bar" type="text"
-    placeholder="Enter Search Query or URL..." size="60" onkeydown="navigate(event);"></input><button id="searchBTN" class="inputDark" onclick="navigate();">Search</button>
+    <input id="serverIP" style="border-bottom: none;" class="inputDark" type="number" placeholder="server IP"></input><br>
+    <br>
+    <input id="search-bar" type="url"
+    placeholder="Enter Search Query or URL..." onkeydown="navigate(event);"></input><dir><button id="searchBTN" class="inputDark" onclick="navigate();">Search</button></dir>
     <iframe id="webAPI" src="" width="1" height="1"></iframe>
   </body>
 </html>
@@ -36,10 +59,12 @@ html {
 input#search-bar {
   left: 300px;
   top: 1.2%;
+  width: 90%;
   font-size: 24px;
   color: #abb2bf;
   background-color: #282c34;
   border-color: #21252b !important;
+  padding: 2px;
 }
 
 .inputDark {
@@ -51,10 +76,9 @@ input#search-bar {
 #searchBTN {
   position: relative;
   border-color: #21252b !important;
-  top: -4px;
-  width: 70px;
-  height: 30px;
-  font-size: 18px;
+  width: 110px;
+  height: 40px;
+  font-size: 24px;
 }
 
 /* API web socket */
