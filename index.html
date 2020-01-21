@@ -12,16 +12,21 @@
   		if (key==13 || e == true){
     		var searchBar = document.getElementById('search-bar');
 
-    		// send request to api
-    		if (searchBar.value.includes("https://") || searchBar.value.includes("http://")) {
-      			// if it is a link
-      			document.getElementById('webSocket').src = "http://" + document.getElementById('serverIP').value+":8080"
-      			+ "/?v=\"" + searchBar.value + "\"";
+    		if (searchBar.value.includes("!")) { //command input
+    			document.getElementById('webSocket').src = "http://" + document.getElementById('serverIP').value+":8080?w=" + searchBar.value;
+
     		} else {
-      			// google search
-      			document.getElementById('webSocket').src = "http://" + document.getElementById('serverIP').value+":8080"
-      			+ "/?v=\"https://www.google.com/search?q="
-      			+ searchBar.value + "\"";
+    			// send request to api
+    			if (searchBar.value.includes("https://") || searchBar.value.includes("http://")) {
+      				// if it is a link
+      				document.getElementById('webSocket').src = "http://" + document.getElementById('serverIP').value+":8080"
+      				+ "/?w=\"" + searchBar.value + "\"";
+    			} else {
+      				// google search
+      				document.getElementById('webSocket').src = "http://" + document.getElementById('serverIP').value+":8080"
+      				+ "/?w=\"https://www.google.com/search?q="
+      				+ searchBar.value + "\"";
+    			}
     		}
 
     	// clear the search bar
